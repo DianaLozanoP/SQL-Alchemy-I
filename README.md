@@ -2,8 +2,6 @@
 This is a multi-unit exercise to practice SQLAlchemy with relationships.
 ### ****Create User Model****
 
-![graphviz-ccdc089eca5c082609c66f8dd24492c2d0d3d178.svg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ac5e0418-b00c-4630-9e15-e30966971361/graphviz-ccdc089eca5c082609c66f8dd24492c2d0d3d178.svg)
-
 First, create a ***User*** model for SQLAlchemy. Put this in a ***models.py*** file.
 
 It should have the following columns:
