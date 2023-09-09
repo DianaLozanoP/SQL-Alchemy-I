@@ -1,0 +1,49 @@
+*{
+    font-family: 'Bitter', serif;
+}
+.users-link{
+    text-decoration: none;
+}
+.add-button{
+    background-color: grey;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.green-button{
+    background-color: rgb(27, 175, 27);
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.c_button{
+    background-color: white;
+    color: rgb(45, 139, 217);
+    padding: 15px 25px;
+    text-decoration: none;
+    border-color: rgb(45, 139, 217);
+    border-radius: 5px;
+}
+.blue-button{
+    background-color: rgb(54, 54, 228);
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.red-button{
+    background-color: red;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
