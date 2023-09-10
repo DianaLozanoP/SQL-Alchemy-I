@@ -1,10 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}User page{% endblock %}
 {% block content %}
-<div class="profile">
-    <img src="{{user.image_url}}">
+<div class="card">
+    <div class="row">
+        <div class="col-md-2">
+            <img class="img-thumbnail" src="{{user.image_url}}">
+        </div>
+        <div class="col-md-10">
+            <h2>{{user.first_name}} {{user.last_name}}</h2>
+            <a class="btn btn-primary" href="/users/{{user.id}}/edit">Edit</a>
+            <a class="btn btn-danger" href="/users/{{user.id}}/delete">Delete</a>
+            <h3>Posts</h3>
+            <ul>
+                {% for post in user.posts %}
+                <li> <a href='/posts/{{post.id}}'>{{post.title}}</a></li>
+                {% endfor %}
+            </ul>
+            <a class="btn btn-primary" href="/users/{{user.id}}/posts/new">Add Post</a>
+        </div>   
+    </div>
 </div>
-    <p>{{user.first_name}} {{user.last_name}}</p>
-    <a class="blue-button" href="/users/{{user.id}}/edit">Edit</a>
-    <a class="red-button" href="/users/{{user.id}}/delete">Delete</a>
+
 {% endblock %}

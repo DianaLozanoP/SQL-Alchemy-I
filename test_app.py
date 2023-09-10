@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from app import app
-from models import db, User
+from models import db, User, Post
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly'
 app.config['SQLALCHEMY_ECHO'] = False
@@ -46,7 +46,7 @@ class UserViewsTestCase(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
-            self.assertIn('<p>TestFName TestLName</p>', html)
+            self.assertIn('<h2>TestFName TestLName</h2>', html)
 
     def create_newuser(self):
         with app.test_client() as client:
@@ -56,4 +56,24 @@ class UserViewsTestCase(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
-            self.assertIn("<p>TestFName2 TestLName2</p>", html)
+            self.assertIn("<h2>TestFName2 TestLName2</h2>", html)
+
+    def create_newpost(self):
+        with app.test_client() as client:
+            p = {"title": "TestPost1", "content": "TestingContent1", "user_id": 1}
+            resp = client.post("/users/1/posts/new", data=p,
+                               follow_redirects=True)
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn("<h2>TestPost1</h2>", html)
+
+    def edit_newpost(self):
+        with app.test_client() as client:
+            p = {"title": "TestPost2", "content": "TestingContent2"}
+            resp = client.post("/posts/1/edit", data=p,
+                               follow_redirects=True)
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn("<h2>TestPost2</h2>", html)
