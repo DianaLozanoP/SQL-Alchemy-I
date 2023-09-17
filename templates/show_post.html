@@ -2,8 +2,19 @@
 {% block title %}Post Details{% endblock %}
 {% block content %}
 <h2>{{post.title}}</h2>
-<p>{{post.content}}</p>
-<p>By {{post.user.first_name}} {{post.user.last_name}}</p>
+<p>{{post.content}} </p>
+<p>By {{post.user.first_name}} {{post.user.last_name}} on {{post.correct_date}}</p>
+<div class="list-group list-group-horizontal">
+    <h4>Tags:</h4>
+<ul class="list-group list-group-horizontal" class="list-unstyled">
+    {% for eachtag in post.tags %}
+        <a href="/tags/{{eachtag.id}}" class="btn btn-primary">
+        {{eachtag.name}}
+        </a>
+    {% endfor %}
+</ul>
+</div>
+<br>
 <a href="/users/{{post.user.id}}" class="btn btn-outline-primary">Cancel</a>
 <a href="/posts/{{post.id}}/edit" class="btn btn-info">Edit</a>
 <a href="/posts/{{post.id}}/delete" class="btn btn-danger">Delete</a>

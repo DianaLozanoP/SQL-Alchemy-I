@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Checkout Tag{% endblock %}
+{% block content %}
+<h2>{{tag.name}}</h2>
+<ul>
+    {% for post in tag.posts %}
+    <li> <a href='/posts/{{post.id}}'>{{post.title}}</a></li>
+    {% endfor %}
+</ul>
+<a href="/tags/{{tag.id}}/edit" class="btn btn-info">Edit</a>
+<a href="/tags/{{tag.id}}/delete" class="btn btn-danger">Delete</a>
+
+{% endblock %}

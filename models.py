@@ -49,9 +49,34 @@ class Post(db.Model):
                         nullable=False)
     created_at = db.Column(db.DateTime,
                            nullable=False,
-                           default=datetime.utcnow)
+                           default=datetime.now)
 
     user_id = db.Column(db.Integer,
                         db.ForeignKey('users.id'))
 
-    user = db.Relationship('User', backref='posts')
+    user = db.relationship('User', backref='posts')
+
+    @property
+    def correct_date(self):
+        return self.created_at.strftime("%a %b %-d %Y, %-I:%M %p")
+
+
+class Tag(db.Model):
+    __tablename__ = 'tags'
+
+    id = db.Column(db.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    name = db.Column(db.String(30),
+                     nullable=False,
+                     unique=True)
+    posts = db.relationship('Post', secondary='posttags', backref='tags')
+
+
+class PostTag(db.Model):
+    __tablename__ = 'posttags'
+
+    post_id = db.Column(db.Integer, db.ForeignKey(
+        'posts.id'), primary_key=True, nullable=False)
+    tag_id = db.Column(db.Integer, db.ForeignKey(
+        'tags.id'), primary_key=True, nullable=False)
